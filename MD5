@@ -1,0 +1,14 @@
+56403cff36451566728081474d8e90c1 *DESCRIPTION
+e0b7a496fd40081a61828d3268981e4e *NAMESPACE
+e03606e51c2c2c1a299cc8e56700b0d9 *R/fitadjacent.R
+ddc05dabd478412c631f43cf0411974e *R/fitcumulative.R
+e78d276fb587cf5850e39d04cf175768 *R/ordDisp-class.R
+19f1f0f11f1b221689410388ed3a22d9 *R/ordDisp-generic.R
+014d4f12ba8983646314947ee71bb8b5 *R/ordDisp-method.R
+cac8541aab4257f1423f4687e5103689 *R/ordDisp.R
+2a2a950e3ace2fd922f7168692d48743 *R/reti.R
+cdb90a85654441ac13b615696b5dcb14 *R/specification.R
+ab4648c64cf1eeee6b0b8ad0e7f3f169 *data/reti.rda
+4617359948606f2dd6125dc646b47f6d *man/ordDisp.Rd
+d769142159c3f6b0162b954fbec49cbd *man/plotordDisp.Rd
+5819875ac2a953af9e3c40ae5995e7c1 *man/reti.Rd
