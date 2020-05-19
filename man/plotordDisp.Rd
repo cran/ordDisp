@@ -5,8 +5,8 @@
 \alias{plotordDisp}
 \title{Visualization of Estimated Effects}
 \usage{
-plotordDisp(x, names, colorvec, reference = NULL, labels = NULL, cex = 2,
-  KI = FALSE, KIfactor = 10/11, title = NULL, ...)
+plotordDisp(x, names, colorvec, reference = NULL, labels = NULL,
+  cex = 1, KI = FALSE, KIfactor = 10/11, title = NULL, ...)
 }
 \arguments{
 \item{x}{Object of class \code{\link[ordDisp]{ordDisp}}}
@@ -31,10 +31,11 @@ plotordDisp(x, names, colorvec, reference = NULL, labels = NULL, cex = 2,
 }
 \description{
 A function to visualize the estimated effects of the location-shift model or rating-scale model accounting for response styles
-(RSRS) obtained by \code{ordDisp}. The function returns a two-dimensional plot of the tupel \eqn{(exp{\alpha},exp{\beta}}. 
+(RSRS) obtained by \code{ordDisp}. In case of linear effects, the function returns a two-dimensional plot of the tupel \eqn{(exp{\alpha},exp{\beta}}. 
 It is optional to include pointwise 95\% confidence intervals represented by stars, where the horizontal and vertical 
 length correspond to the confidence intervals of \eqn{exp{\alpha}} (dispersion or response-style effect) and \eqn{exp{\beta}} 
-(location or content-related effect).
+(location or content-related effect). In case of smooth effects, the function returns two plots of the fitted (non-linear) functions \eqn{f(\beta)} 
+and \eqn{f(\alpha)}.
 }
 \examples{
 data(reti)
@@ -43,19 +44,22 @@ mod <- ordDisp(RET~SM+DIAB+GH+BP|SM+DIAB,data=reti,family="cumulative")
 plot(mod,names=c("SM","DIAB"),colorvec=c(1,2))
 plotvglm(mod)
 
-}
-\author{
-Moritz Berger <moritz.berger@stat.uni-muenchen.de> \cr \url{http://www.statistik.lmu.de/~mberger/}
+mod2 <- ordDisp(RET~SM+s(DIAB)+GH+BP|SM+DIAB+GH+BP, data=reti, 
+family="cumulative", n_bs=4, scaling=FALSE)
+plot(mod2, names=c("DIAB"))
+
 }
 \references{
-Tutz, Gerhard and Berger, Moritz (2016a): Response Styles in Rating Scales - Simultaneous Modelling of 
+Tutz, Gerhard and Berger, Moritz (2016): Response Styles in Rating Scales - Simultaneous Modelling of 
 Content-Related Effects and the Tendency to Middle or Extreme Categories, 
 Journal of Educational and Behavioral Statistics 41(3), 239-268.
 
-Tutz, Gerhard and Berger, Moritz (2016b): Seperating Location and Dispersion in Ordinal Regression Models, 
-LMU Muenchen, Institut fuer Statistik, Technical Report 190
+Tutz, Gerhard and Berger, Moritz (2017): Seperating Location and Dispersion in Ordinal Regression Models,
+Econometrics and Statistics 2, 131-148.
 }
 \seealso{
 \code{\link[ordDisp]{ordDisp}}
 }
-
+\author{
+Moritz Berger <moritz.berger@imbie.uni-bonn.de> \cr \url{https://www.imbie.uni-bonn.de/personen/dr-moritz-berger/}
+}

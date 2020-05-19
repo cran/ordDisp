@@ -33,4 +33,3 @@ table(reti$RET)
 Bender and Grouven (1998): Using binary logistic regression models for ordinal data with nonproportional
 odds, J. Clin. Epidemiol., 51, 809-816.
 }
-

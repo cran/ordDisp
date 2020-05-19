@@ -1,4 +1,4 @@
-fitadjacent <- function(y,X,Z,scaling,middle,m,...){
+fitadjacent <- function(y,X,Z,scaling,middle,m,reverse,...){
   
   n  <- nrow(X) # observations
   k  <- length(unique(y)) # categories 
@@ -13,17 +13,22 @@ fitadjacent <- function(y,X,Z,scaling,middle,m,...){
     
     # estimation with vglm 
     mod <- vglm(formula0,
-                family=acat(parallel=FALSE~1,reverse=FALSE),
+                family=acat(parallel=FALSE~1, reverse=reverse),
                 data=X,
-                control=vglm.control(checkwz=FALSE))
+                control=vglm.control(checkwz=FALSE), ...)
     
-    return(mod)
+    return(list("mod"=mod,"m"=m))
     
     
   } else{
   
   
     pz <- ncol(Z) # covariates in Z  
+    if(reverse){
+      fac <- -1 
+    } else{
+      fac <- 1 
+    }
     
     # generate design-matrix  
     Zbig <- Z[,rep(1:pz,each=k-1)]
@@ -35,16 +40,17 @@ fitadjacent <- function(y,X,Z,scaling,middle,m,...){
       for(i in 0:(pz-1)){
         if(!scaling){
           if(m>1){
-            Zbig[,(m:(k-1))+i*(k-1)] <- -Zbig[,(m:(k-1))+i*(k-1)]
+            Zbig[,(m:(k-1))+i*(k-1)] <- fac*-Zbig[,(m:(k-1))+i*(k-1)]
+            Zbig[,(1:(m-1))+i*(k-1)] <- fac*Zbig[,(1:(m-1))+i*(k-1)]
           }
         } else{
           if(m>1){
             for(r in 1:(m-1)){
-              Zbig[,r+i*(k-1)] <- +((m-r-1)+0.5)*Zbig[,r+i*(k-1)]
+              Zbig[,r+i*(k-1)] <- fac*+((m-r-1)+0.5)*Zbig[,r+i*(k-1)]
             }
           }
           for(r in m:(k-1)){
-            Zbig[,r+i*(k-1)] <- -((r-m)+0.5)*Zbig[,r+i*(k-1)]
+            Zbig[,r+i*(k-1)] <- fac*-((r-m)+0.5)*Zbig[,r+i*(k-1)]
           }
         }
       }
@@ -57,16 +63,17 @@ fitadjacent <- function(y,X,Z,scaling,middle,m,...){
       for(i in 0:(pz-1)){
         if(!scaling){
           if(m>1){
-            Zbig[,((m+1):(k-1))+i*(k-1)] <- -Zbig[,((m+1):(k-1))+i*(k-1)]
+            Zbig[,((m+1):(k-1))+i*(k-1)] <- fac*-Zbig[,((m+1):(k-1))+i*(k-1)]
+            Zbig[,(1:(m-1))+i*(k-1)]     <- fac*Zbig[,(1:(m-1))+i*(k-1)]
           }
           Zbig[,m+i*(k-1)] <- 0
         } else{
           for(r in 1:m){
-            Zbig[,r+i*(k-1)] <- +(m-r)*Zbig[,r+i*(k-1)]
+            Zbig[,r+i*(k-1)] <- fac*+(m-r)*Zbig[,r+i*(k-1)]
           }
           if(m < (k-1)){
             for(r in (m+1):(k-1)){
-              Zbig[,r+i*(k-1)] <- -(r-m)*Zbig[,r+i*(k-1)]
+              Zbig[,r+i*(k-1)] <- fac*-(r-m)*Zbig[,r+i*(k-1)]
             }
           }
         }
@@ -99,11 +106,11 @@ fitadjacent <- function(y,X,Z,scaling,middle,m,...){
   
     # estimation with vglm 
     mod <- vglm(formula1,
-                family=acat(parallel=FALSE~1,reverse=FALSE),
+                family=acat(parallel=FALSE~1, reverse=reverse),
                 xij=formula3,
                 form2=formula2,
                 data=DM,
-                checkwz=FALSE,...)
+                checkwz=FALSE, ...)
     
     return(list("mod"=mod,"m"=m))
   

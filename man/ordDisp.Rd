@@ -2,12 +2,13 @@
 % Please edit documentation in R/ordDisp-class.R, R/ordDisp.R
 \docType{class}
 \name{ordDisp-class}
-\alias{ordDisp}
 \alias{ordDisp-class}
+\alias{ordDisp}
 \title{Separating Location and Dispersion in Ordinal Regression Models}
 \usage{
-ordDisp(formula, data, family = c("cumulative", "acat"), scaling = TRUE,
-  middle = TRUE, m = NULL, ...)
+ordDisp(formula, data, family = c("cumulative", "acat"),
+  scaling = TRUE, middle = TRUE, m = NULL, n_bs = 6,
+  reverse = FALSE, ...)
 }
 \arguments{
 \item{formula}{Object of class \code{\link{formula}}: a symbolic description of the model to be fitted. See details.}
@@ -24,6 +25,10 @@ the intervals between two thresholds.}
 'moderatly agree','strongly agree'.}
 
 \item{m}{Middle category of the (non-symmetric) response, chosen for the model. Only relevant, if \code{middle=FALSE}.}
+
+\item{n_bs}{Number of inner B-spline basis functions for smooth components (see details).}
+
+\item{reverse}{Argument of the family function passed to \code{\link{vglm}}.}
 
 \item{...}{Further arguments passed to or from other methods}
 }
@@ -42,7 +47,7 @@ and \code{plot} can be applied.
 A function to estimate the location-shift model or rating-scale model accounting for response styles (RSRS) 
 for the regression analysis of ordinal responses. The model allows to account for differing variability in 
 subgroups of the population. The model explicitely links varying disperion (or response behaviour) to explanatory 
-variables. The basic models are described in Tutz and Berger (2016a) and Tutz and Berger (2016b).
+variables (metric, binary, ordinal and/or nominal). The basic models are described in Tutz and Berger (2016) and Tutz and Berger (2017).
 }
 \details{
 The \link{formula} has to have the form \code{response ~ x-variables|z-variables}, where \code{response} is the name of 
@@ -52,6 +57,9 @@ of the model and \code{z-variables} are the terms that specify the dispersion (o
 If all the variables are entered in both parts of the model, the right hand side of the formula can, for example, 
 have the form \code{x1+...+xp|x1+...+xp}. If the second part is omitted, a simple model without dispersion 
 (or response-style) effects is fitted.
+
+The function allows for smooth (non-linear) effects in the x-variables and/or the z-variables. Smooth effects are specified 
+by entering s(x) and/or s(z) into the formula. The functions are fitted using \code{n_bs} B-spline basis functions.
 
 Function \code{ordDisp} internally calls \code{\link{vglm}} from package \code{\link{VGAM}}. Argument \code{family} is passed to \code{vglm}. 
 Currently two link functions are implemented
@@ -69,19 +77,22 @@ data(reti)
 mod <- ordDisp(RET~SM+DIAB+GH+BP|SM+DIAB,data=reti,family="cumulative")
 summary(mod)
 
-}
-\author{
-Moritz Berger <moritz.berger@stat.uni-muenchen.de> \cr \url{http://www.statistik.lmu.de/~mberger/}
+mod2 <- ordDisp(RET~SM+s(DIAB)+GH+BP|SM+DIAB+GH+BP, data=reti, 
+family="cumulative", n_bs=4, scaling=FALSE)
+summary(mod2)
+
 }
 \references{
-Tutz, Gerhard and Berger, Moritz (2016a): Response Styles in Rating Scales - Simultaneous Modelling of 
+Tutz, Gerhard and Berger, Moritz (2016): Response Styles in Rating Scales - Simultaneous Modelling of 
 Content-Related Effects and the Tendency to Middle or Extreme Categories, 
 Journal of Educational and Behavioral Statistics 41(3), 239-268.
 
-Tutz, Gerhard and Berger, Moritz (2016b): Seperating Location and Dispersion in Ordinal Regression Models, 
-LMU Muenchen, Institut fuer Statistik, Technical Report 190
+Tutz, Gerhard and Berger, Moritz (2017): Seperating Location and Dispersion in Ordinal Regression Models,
+Econometrics and Statistics 2, 131-148.
 }
 \seealso{
 \code{\link[VGAM]{summaryvglm}}, \code{\link[VGAM]{predictvglm}}, \code{\link[ordDisp]{plotordDisp}}
 }
-
+\author{
+Moritz Berger <moritz.berger@imbie.uni-bonn.de> \cr \url{https://www.imbie.uni-bonn.de/personen/dr-moritz-berger/}
+}
