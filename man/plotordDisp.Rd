@@ -5,8 +5,18 @@
 \alias{plotordDisp}
 \title{Visualization of Estimated Effects}
 \usage{
-plotordDisp(x, names, colorvec, reference = NULL, labels = NULL,
-  cex = 1, KI = FALSE, KIfactor = 10/11, title = NULL, ...)
+plotordDisp(
+  x,
+  names,
+  colorvec,
+  reference = NULL,
+  labels = NULL,
+  cex = 1,
+  KI = FALSE,
+  KIfactor = 10/11,
+  title = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{Object of class \code{\link[ordDisp]{ordDisp}}}
@@ -56,10 +66,13 @@ Journal of Educational and Behavioral Statistics 41(3), 239-268.
 
 Tutz, Gerhard and Berger, Moritz (2017): Seperating Location and Dispersion in Ordinal Regression Models,
 Econometrics and Statistics 2, 131-148.
+
+Tutz, Gerhard and Berger, Moritz (2022): Sparser Ordinal Regression Models Based on Parametric and Additive Location-Shift
+Approaches. International Statistical Review, 90(2), 306-327.
 }
 \seealso{
 \code{\link[ordDisp]{ordDisp}}
 }
 \author{
-Moritz Berger <moritz.berger@imbie.uni-bonn.de> \cr \url{https://www.imbie.uni-bonn.de/personen/dr-moritz-berger/}
+Moritz Berger <Moritz.Berger@imbie.uni-bonn.de> \cr \url{https://www.imbie.uni-bonn.de/people/dr-moritz-berger/}
 }

@@ -16,7 +16,7 @@
 #''moderatly agree','strongly agree'. 
 #'@param m Middle category of the (non-symmetric) response, chosen for the model. Only relevant, if \code{middle=FALSE}.
 #'@param n_bs Number of inner B-spline basis functions for smooth components (see details).  
-#'@param reverse Argument of the family function passed to \code{\link{vglm}}. 
+#'@param reverse Argument of the family function passed to \code{\link[VGAM]{vglm}}. 
 #'@param ... Further arguments passed to or from other methods
 #'
 #'@details 
@@ -31,7 +31,7 @@
 #'The function allows for smooth (non-linear) effects in the x-variables and/or the z-variables. Smooth effects are specified 
 #'by entering s(x) and/or s(z) into the formula. The functions are fitted using \code{n_bs} B-spline basis functions.
 #'
-#'Function \code{ordDisp} internally calls \code{\link{vglm}} from package \code{\link{VGAM}}. Argument \code{family} is passed to \code{vglm}. 
+#'Function \code{ordDisp} internally calls \code{\link[VGAM]{vglm}} from package VGAM. Argument \code{family} is passed to \code{vglm}. 
 #'Currently two link functions are implemented
 #'
 #'\itemize{
@@ -43,7 +43,7 @@
 #'
 #'
 #'@return 
-#'Object of class \code{ordDisp} which inherits from \code{\link{vglm}}. The object comprises all the slots of an 
+#'Object of class \code{ordDisp} which inherits from \code{\link[VGAM]{vglm}}. The object comprises all the slots of an 
 #'\code{"vglm"}-object and in addition the following components: 
 #'
 #'\item{outercall}{The matched call of \code{ordDisp}.}
@@ -53,7 +53,8 @@
 #'All the methods implemented for objects of class \code{vglm}, like \code{print}, \code{summary}, \code{predict} 
 #'and \code{plot} can be applied. 
 #'
-#'@author Moritz Berger <moritz.berger@imbie.uni-bonn.de> \cr \url{https://www.imbie.uni-bonn.de/personen/dr-moritz-berger/}
+#' @author 
+#' Moritz Berger <Moritz.Berger@imbie.uni-bonn.de> \cr \url{https://www.imbie.uni-bonn.de/people/dr-moritz-berger/}
 #'
 #'@references
 #'Tutz, Gerhard and Berger, Moritz (2016): Response Styles in Rating Scales - Simultaneous Modelling of 
@@ -62,6 +63,9 @@
 #' 
 #'Tutz, Gerhard and Berger, Moritz (2017): Seperating Location and Dispersion in Ordinal Regression Models,
 #'Econometrics and Statistics 2, 131-148.
+#'
+#'Tutz, Gerhard and Berger, Moritz (2022): Sparser Ordinal Regression Models Based on Parametric and Additive Location-Shift
+#'Approaches. International Statistical Review, 90(2), 306-327.
 #'
 #'@seealso \code{\link[VGAM]{summaryvglm}}, \code{\link[VGAM]{predictvglm}}, \code{\link[ordDisp]{plotordDisp}}
 #'

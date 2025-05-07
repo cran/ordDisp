@@ -6,9 +6,17 @@
 \alias{ordDisp}
 \title{Separating Location and Dispersion in Ordinal Regression Models}
 \usage{
-ordDisp(formula, data, family = c("cumulative", "acat"),
-  scaling = TRUE, middle = TRUE, m = NULL, n_bs = 6,
-  reverse = FALSE, ...)
+ordDisp(
+  formula,
+  data,
+  family = c("cumulative", "acat"),
+  scaling = TRUE,
+  middle = TRUE,
+  m = NULL,
+  n_bs = 6,
+  reverse = FALSE,
+  ...
+)
 }
 \arguments{
 \item{formula}{Object of class \code{\link{formula}}: a symbolic description of the model to be fitted. See details.}
@@ -28,12 +36,12 @@ the intervals between two thresholds.}
 
 \item{n_bs}{Number of inner B-spline basis functions for smooth components (see details).}
 
-\item{reverse}{Argument of the family function passed to \code{\link{vglm}}.}
+\item{reverse}{Argument of the family function passed to \code{\link[VGAM]{vglm}}.}
 
 \item{...}{Further arguments passed to or from other methods}
 }
 \value{
-Object of class \code{ordDisp} which inherits from \code{\link{vglm}}. The object comprises all the slots of an 
+Object of class \code{ordDisp} which inherits from \code{\link[VGAM]{vglm}}. The object comprises all the slots of an 
 \code{"vglm"}-object and in addition the following components: 
 
 \item{outercall}{The matched call of \code{ordDisp}.}
@@ -61,7 +69,7 @@ have the form \code{x1+...+xp|x1+...+xp}. If the second part is omitted, a simpl
 The function allows for smooth (non-linear) effects in the x-variables and/or the z-variables. Smooth effects are specified 
 by entering s(x) and/or s(z) into the formula. The functions are fitted using \code{n_bs} B-spline basis functions.
 
-Function \code{ordDisp} internally calls \code{\link{vglm}} from package \code{\link{VGAM}}. Argument \code{family} is passed to \code{vglm}. 
+Function \code{ordDisp} internally calls \code{\link[VGAM]{vglm}} from package VGAM. Argument \code{family} is passed to \code{vglm}. 
 Currently two link functions are implemented
 
 \itemize{
@@ -89,10 +97,13 @@ Journal of Educational and Behavioral Statistics 41(3), 239-268.
 
 Tutz, Gerhard and Berger, Moritz (2017): Seperating Location and Dispersion in Ordinal Regression Models,
 Econometrics and Statistics 2, 131-148.
+
+Tutz, Gerhard and Berger, Moritz (2022): Sparser Ordinal Regression Models Based on Parametric and Additive Location-Shift
+Approaches. International Statistical Review, 90(2), 306-327.
 }
 \seealso{
 \code{\link[VGAM]{summaryvglm}}, \code{\link[VGAM]{predictvglm}}, \code{\link[ordDisp]{plotordDisp}}
 }
 \author{
-Moritz Berger <moritz.berger@imbie.uni-bonn.de> \cr \url{https://www.imbie.uni-bonn.de/personen/dr-moritz-berger/}
+Moritz Berger <Moritz.Berger@imbie.uni-bonn.de> \cr \url{https://www.imbie.uni-bonn.de/people/dr-moritz-berger/}
 }

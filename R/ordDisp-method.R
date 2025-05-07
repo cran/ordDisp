@@ -19,7 +19,8 @@
 #'@param title Optional title that is added to the plot 
 #'@param ... Further arguments passed to or from other methods
 #'
-#'@author Moritz Berger <moritz.berger@imbie.uni-bonn.de> \cr \url{https://www.imbie.uni-bonn.de/personen/dr-moritz-berger/}
+#' @author 
+#' Moritz Berger <Moritz.Berger@imbie.uni-bonn.de> \cr \url{https://www.imbie.uni-bonn.de/people/dr-moritz-berger/}
 #'
 #'@references
 #'Tutz, Gerhard and Berger, Moritz (2016): Response Styles in Rating Scales - Simultaneous Modelling of 
@@ -28,6 +29,9 @@
 #' 
 #'Tutz, Gerhard and Berger, Moritz (2017): Seperating Location and Dispersion in Ordinal Regression Models,
 #'Econometrics and Statistics 2, 131-148.
+#'
+#'Tutz, Gerhard and Berger, Moritz (2022): Sparser Ordinal Regression Models Based on Parametric and Additive Location-Shift
+#'Approaches. International Statistical Review, 90(2), 306-327.
 #'
 #'@seealso \code{\link[ordDisp]{ordDisp}}
 #'

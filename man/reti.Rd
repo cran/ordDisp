@@ -4,7 +4,8 @@
 \name{reti}
 \alias{reti}
 \title{Example Retinopathy}
-\format{A data frame containing 613 observations on 5 variables:
+\format{
+A data frame containing 613 observations on 5 variables:
 
 \code{RET } retinopathy status (1:no retinopathy, 2:nonproliferative retinopathy, 3:advanced retinopathy or
 blind) 
@@ -15,7 +16,8 @@ blind)
 
 \code{GH } glycosylated hemoglobin measured in percent
 
-\code{BP } diastolic blood pressure in mmHg}
+\code{BP } diastolic blood pressure in mmHg
+}
 \usage{
 data(reti)
 }
